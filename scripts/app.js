@@ -1,12 +1,12 @@
-function hello()
+function saveTask()
 {
-    console.log("hello there!");
+    console.log("hello im the saveButton");
 }
 
 function init()
 {
     console.log("hello im the init");
-    hello();
+    $("#btnSave").click(saveTask);
 }
 
-window.onload = hello;// it waits until the css and the html resolved to run the logic
+window.onload = init;// it waits until the css and the html resolved to run the logic

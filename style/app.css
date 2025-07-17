@@ -1,0 +1,15 @@
+/* try to divede the screen in two 
+sections, using flex */
+
+main {
+    display: flex;
+    height: 100vh;
+}
+.list {
+    background-color: aqua;
+    flex: 4;
+}
+#form{
+    background-color: antiquewhite;
+    flex: 4;   
+}
