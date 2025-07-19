@@ -1,10 +1,29 @@
-/* try to divede the screen in two 
-sections, using flex */
+.task
+{
+    margin: 10px 20px;
+    padding: 10px;
+    display: flex;
+    border: 2px solid gray;
+}
+.task .info 
+{
+    flex: 3;
+}
+.task .status
+{
+    flex: 1;
+}
+
+.task .date-budget{
+    flex:1;
+}
+
 
 main {
     display: flex;
     height: 100vh;
 }
+
 .list {
     background-color: aqua;
     flex: 4;
