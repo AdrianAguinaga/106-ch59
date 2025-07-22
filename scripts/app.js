@@ -13,10 +13,20 @@ function saveTask()
     console.log(data);
     
     // display the info
-    displayTask(data);
+    //displayTask(data);
 
     // save to server
     console.log("hello im the saveButton");
+    $.ajax({
+        type: "post",
+        url: "http://fsdiapi.azurewebsites.net/api/tasks/",
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        success: function(response)
+        {console.log(response);},
+        error: function (error)
+        {console.log(error);}
+    })
 }
 
 function displayTask(task){
@@ -37,10 +47,59 @@ function displayTask(task){
 
 }
 
+function loadTask(){
+    // get the content of the http://fsdiapi.azurewebsites.net/api/tasks
+    //console.log the response from the server
+    $.ajax(
+        {
+            type: "get",
+            url: "http://fsdiapi.azurewebsites.net/api/tasks",
+            success: function (response){
+                let dataJSON = JSON.parse(response);
+ // in the list section, render only those messages created by you
+                for(let i=0;i<dataJSON.length;i++)
+                {
+                    let currentValue = dataJSON[i];
+                    if(currentValue.name == "Adrian59")
+                    {
+                        displayTask(currentValue);
+                    }
+
+                }
+
+                console.log(response);
+                console.log(dataJSON);
+            },
+            error: function (error){
+                console.log(error);
+            }
+        }
+    )
+    
+}
+// render on the list section, only those messages created by you
+
+function testRequest()
+{
+    $.ajax({
+        type: "GET",
+        url: "http://fsdiapi.azurewebsites.net",
+        success: function(response)
+        {
+            console.log(response);
+        },
+        error: function(error)
+        {
+            console.log(error);
+        }
+    });
+}
+
 function init()
 {
     console.log("hello im the init");
     $("#btnSave").click(saveTask);
+    loadTask();
 }
 
 window.onload = init;// it waits until the css and the html resolved to run the logic
